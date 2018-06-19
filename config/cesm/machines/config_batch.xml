@@ -175,6 +175,16 @@
     </directives>
   </batch_system>
 
+  <batch_system type="pbs" MACH="raijin" >
+    <submit_args>
+      <arg flag="-P" name="$PROJECT"/>
+    </submit_args>
+    <queues>
+        <queue default="true">normal</queue>
+        <queue>express</queue>
+    </queues>
+  </batch_system>
+
   <!-- babbage is PBS -->
   <batch_system MACH="babbage" type="pbs">
     <directives>

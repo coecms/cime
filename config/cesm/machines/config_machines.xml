@@ -49,6 +49,53 @@
 -->
 
 <config_machines version="2.0">
+    <machine MACH="raijin">
+        <DESC>NCI Raijin</DESC>
+        <NODENAME_REGEX>raijin.</NODENAME_REGEX>
+        <OS>linux</OS>
+        <COMPILERS>intel</COMPILERS>
+        <MPILIBS>openmpi,intelmpi</MPILIBS>
+        <CIME_OUTPUT_ROOT>/short/$PROJECT/$USER/cesm2</CIME_OUTPUT_ROOT>
+        <DIN_LOC_ROOT>/short/$PROJECT/$USER/cesm2/inputs</DIN_LOC_ROOT>
+        <DOUT_S_ROOT>$CIME_OUTPUT_ROOT/archive/$CASE</DOUT_S_ROOT>
+        <BASELINE_ROOT>/short/$PROJECT/$USER/cesm2/baseline</BASELINE_ROOT>
+        <BATCH_SYSTEM>pbs</BATCH_SYSTEM>
+        <SUPPORTED_BY>CLEX CMS climate_help@nci.org.au</SUPPORTED_BY>
+        <MAX_TASKS_PER_NODE>16</MAX_TASKS_PER_NODE>
+        <MAX_MPITASKS_PER_NODE>16</MAX_MPITASKS_PER_NODE>
+        <mpirun mpilib="openmpi">
+            <executable>mpirun</executable>
+            <arguments>
+                <arg name="num_tasks">-n {{total_tasks}}</arg>
+            </arguments>
+        </mpirun>
+        <module_system type="module">
+            <cmd_path lang="sh">module</cmd_path>
+            <cmd_path lang="csh">module</cmd_path>
+            <cmd_path lang="python">/opt/Modules/$MODULE_VERSION/bin/modulecmd python</cmd_path>
+            <cmd_path lang="perl">/opt/Modules/$MODULE_VERSION/bin/modulecmd perl</cmd_path>
+            <modules><command name="purge"/></modules>
+            <modules>
+                <command name="use">/g/data3/hh5/public/modules</command>
+                <command name="load">conda/python3</command>
+                <command name="load">netcdf/4.6.1</command>
+                <command name="load">cmake/3.8.2</command>
+            </modules>
+            <modules compiler="intel">
+                <command name="load">intel-cc/2018.3.222</command>
+                <command name="load">intel-fc/2018.3.222</command>
+            </modules>
+            <modules mpilib="openmpi">
+                <command name="load">openmpi/3.1.0</command>
+            </modules>
+            <modules mpilib="intelmpi">
+                <command name="load">intel-mpi/2018.3.222</command>
+            </modules>
+        </module_system>
+    <environment_variables>
+        <env name="NETCDF_PATH">/apps/netcdf/4.6.1</env>
+    </environment_variables>
+    </machine>
 
   <machine MACH="bluewaters">
     <DESC>ORNL XE6, os is CNL, 32 pes/node, batch system is PBS</DESC>
