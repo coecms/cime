@@ -469,6 +469,12 @@ using a fortran linker.
   <PIO_FILESYSTEM_HINTS>lustre</PIO_FILESYSTEM_HINTS>
 </compiler>
 
+<compiler MACH="raijin" COMPILER="intel">
+  <SLIBS>
+      <base>-lnetcdf -lnetcdff -mkl</base>
+  </SLIBS>
+</compiler>
+
 <compiler MACH="bluewaters" COMPILER="pgi">
   <CFLAGS>
     <append DEBUG="FALSE"> -O2 </append>

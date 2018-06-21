@@ -66,7 +66,7 @@
         <mpirun mpilib="openmpi">
             <executable>mpirun</executable>
             <arguments>
-                <arg name="num_tasks">-n {{total_tasks}}</arg>
+                <arg name="num_tasks">-n {{ total_tasks }}</arg>
             </arguments>
         </mpirun>
         <module_system type="module">
@@ -80,10 +80,12 @@
                 <command name="load">conda/python3</command>
                 <command name="load">netcdf/4.6.1</command>
                 <command name="load">cmake/3.8.2</command>
+                <command name="load">pbs</command>
             </modules>
             <modules compiler="intel">
                 <command name="load">intel-cc/2018.3.222</command>
                 <command name="load">intel-fc/2018.3.222</command>
+                <command name="load">intel-mkl/2018.3.222</command>
             </modules>
             <modules mpilib="openmpi">
                 <command name="load">openmpi/3.1.0</command>
