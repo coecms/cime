@@ -182,8 +182,10 @@
           <arg flag="-l mem=" name=" $TOTALPES * 2 * 1024**3"/>
       </submit_args>
       <directives>
+          <!-- Needed for the run script to find the correct Python -->
           <directive default="/bin/bash" > -S {{ shell }}  </directive>
           <directive> -l ncpus={{ total_tasks }} </directive>
+          <directive> -W umask=0022 </directive>
       </directives>
       <queues>
           <queue default="true">normal</queue>
