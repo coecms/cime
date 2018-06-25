@@ -78,7 +78,7 @@
             <modules><command name="purge"/></modules>
             <modules>
                 <command name="use">/g/data3/hh5/public/modules</command>
-                <command name="load">conda/python3</command>
+                <command name="load">conda/python27</command>
                 <command name="load">netcdf/4.6.1</command>
                 <command name="load">cmake/3.8.2</command>
                 <command name="load">perl</command>
