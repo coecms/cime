@@ -405,6 +405,10 @@ class EnvBatch(EnvBase):
                         # Special case. Do not provide '-q batch' for blues
                         continue
 
+                    if flag == "-l mem=":
+                        # Specify the memory in GB
+                        rval = val + "gb"
+
                     if flag.rfind("=", len(flag)-1, len(flag)) >= 0 or\
                        flag.rfind(":", len(flag)-1, len(flag)) >= 0:
                         submitargs+=" {}{}".format(flag,str(rval).strip())

@@ -178,8 +178,14 @@
   <batch_system type="pbs" MACH="raijin" >
       <submit_args>
           <arg flag="-P" name="$PROJECT"/>
-          <!-- Values with spaces in them are eval()ed by the submit script -->
-          <arg flag="-l mem=" name=" $TOTALPES * 2 * 1024**3"/>
+          <!-- 
+                On Raijin, `-l mem` values get a 'gb' put at the end
+                Values with spaces in them are eval()ed by the submit script.
+                `task_count` is only defined for archive jobs, we can't do
+                eval() with its value but 1gb per processor should be fine
+            -->
+          <arg flag="-l mem=" name=" $TOTALPES * 2 "/>
+          <arg flag="-l mem=" name="task_count"/>
       </submit_args>
       <directives>
           <!-- Needed for the run script to find the correct Python -->
