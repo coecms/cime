@@ -81,6 +81,7 @@
                 <command name="load">conda/python3</command>
                 <command name="load">netcdf/4.6.1</command>
                 <command name="load">cmake/3.8.2</command>
+                <command name="load">perl</command>
                 <command name="load">pbs</command>
             </modules>
             <modules compiler="intel">
